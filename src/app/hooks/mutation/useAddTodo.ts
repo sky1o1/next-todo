@@ -12,8 +12,6 @@ const AddTodo = async ({ data }: AddTodoProps) => {
       body: JSON.stringify({
         title: data.title,
         details: data.details,
-        // authorId: data.authorId,
-        authorId: "795f0cd5-eae2-4a33-af26-7a65a7e1ce01",
       }),
     });
     return res;

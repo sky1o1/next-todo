@@ -8,14 +8,14 @@ export async function POST(req: NextRequest) {
       data: {
         title: body.title,
         details: body.details,
-        authorId: body.authorId,
+        // authorId: body.authorId,
       },
       select: {
         title: true,
         details: true,
         createdAt: true,
         updatedAt: true,
-        authorId: true,
+        // authorId: true,
       },
     });
     return NextResponse.json(res, { status: 200 });

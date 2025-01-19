@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import { FormProvider, useForm } from "react-hook-form";
 import InputField from "../../components/Input";
-import { useAddTodo } from "@/app/hooks/query/useAddTodo";
+import { useAddTodo } from "@/app/hooks/mutation/useAddTodo";
 
 const CreatePost = () => {
   const router = useRouter();
@@ -15,9 +15,14 @@ const CreatePost = () => {
   function handleClick() {
     const { title, details } = getValues();
     handleSubmit(
-      mutate({
-        data: { title, details, authorId: "212" },
-      })
+      mutate(
+        {
+          data: { title, details },
+        },
+        {
+          onSuccess: router.push("/"),
+        }
+      )
     );
   }
   return (

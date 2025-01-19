@@ -18,7 +18,7 @@ model User {
   name  String @unique @db.VarChar(50)
   email String 
   age   Int
-  todos Todo[]
+  // todos Todo[]
   role  Role   @default(USER)
 
   @@unique([age, email])
@@ -30,8 +30,8 @@ model Todo {
   details   String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  author    User     @relation(fields: [authorId], references: [id])
-  authorId  String
+  // author    User     @relation(fields: [authorId], references: [id])
+  // authorId  String
 
   // @@index([createdAt])
 }
