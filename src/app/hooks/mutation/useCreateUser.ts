@@ -7,17 +7,15 @@ interface UserData {
 
 const CreateUser = async ({ data }: UserData) => {
   try {
-    const res = await Promise.resolve(
-      fetch(`${CONFIG.API_BASE_URL}/create/user`, {
-        method: "POST",
-        body: JSON.stringify({
-          name: data.name,
-          age: +data.age,
-          email: data.email,
-          role: "ADMIN",
-        }),
-      })
-    );
+    const res = await fetch(`${CONFIG.API_BASE_URL}/create/user`, {
+      method: "POST",
+      body: JSON.stringify({
+        name: data.name,
+        age: +data.age,
+        email: data.email,
+        role: "ADMIN",
+      }),
+    });
     return res.json();
   } catch (err) {
     alert(err);

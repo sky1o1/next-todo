@@ -2,15 +2,16 @@ import { CONFIG } from "@/app/lib/config";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 
-interface AddTodoProps {
-  data: { title: string; details: string };
+interface useUpdateTodoProps {
+  data: { id: string; title: string; details: string };
 }
 
-const AddTodo = async ({ data }: AddTodoProps) => {
+const UpdateTodo = async ({ data }: useUpdateTodoProps) => {
   try {
-    const res = await fetch(`${CONFIG.API_BASE_URL}/create/todo`, {
-      method: "POST",
+    const res = await fetch(`${CONFIG.API_BASE_URL}/update/todo`, {
+      method: "PATCH",
       body: JSON.stringify({
+        id: data.id,
         title: data.title,
         details: data.details,
       }),
@@ -21,11 +22,11 @@ const AddTodo = async ({ data }: AddTodoProps) => {
   }
 };
 
-export const useAddTodo = () => {
+export const useUpdateTodo = (id: string) => {
   const router = useRouter();
   return useMutation({
-    mutationKey: ["add-todo"],
-    mutationFn: ({ data }: AddTodoProps) => AddTodo({ data }),
+    mutationKey: ["update-todo", id],
+    mutationFn: ({ data }: useUpdateTodoProps) => UpdateTodo({ data }),
     onSuccess: () => router.push("/"),
   });
 };

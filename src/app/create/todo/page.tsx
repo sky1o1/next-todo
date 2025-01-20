@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { FormProvider, useForm } from "react-hook-form";
 import InputField from "../../components/Input";
 import { useAddTodo } from "@/app/hooks/mutation/useAddTodo";
+import Button from "@/app/components/Button";
 
 const CreatePost = () => {
   const router = useRouter();
@@ -14,16 +15,9 @@ const CreatePost = () => {
 
   function handleClick() {
     const { title, details } = getValues();
-    handleSubmit(
-      mutate(
-        {
-          data: { title, details },
-        },
-        {
-          onSuccess: router.push("/"),
-        }
-      )
-    );
+    mutate({
+      data: { title, details },
+    });
   }
   return (
     <div className=" h-[500px] w-[500px] flex flex-col gap-4 justify-center items-center bg-white rounded-lg p-4 ">
@@ -41,22 +35,13 @@ const CreatePost = () => {
           />
         </div>
         <div className="flex gap-6">
-          <button
-            color="success"
-            className=" h-[40px] w-[100px] bg-white rounded-lg border-2 border-gray-400 mt-2 hover:bg-gray-200 "
-            type="submit"
+          <Button
+            title="Go Back"
+            variant="info"
             onClick={() => router.back()}
-          >
-            Go Back
-          </button>
-          <button
-            color="success"
-            className=" h-[40px] w-[100px] bg-white rounded-lg border-2 border-gray-400 mt-2 hover:bg-gray-200 "
-            type="submit"
-            onClick={handleClick}
-          >
-            Submit
-          </button>
+          />
+
+          <Button title="Submit" onClick={handleSubmit(handleClick)} />
         </div>
       </FormProvider>
     </div>
