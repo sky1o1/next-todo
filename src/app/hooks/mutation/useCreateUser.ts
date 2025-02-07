@@ -1,8 +1,9 @@
 import { CONFIG } from "@/app/lib/config";
 import { useMutation } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
 
 interface UserData {
-  data: { name: string; age: number; email: string };
+  data: { name: string; age: number; email: string; password: string };
 }
 
 const CreateUser = async ({ data }: UserData) => {
@@ -13,7 +14,8 @@ const CreateUser = async ({ data }: UserData) => {
         name: data.name,
         age: +data.age,
         email: data.email,
-        role: "ADMIN",
+        password: data.password,
+        role: "USER",
       }),
     });
     return res.json();
@@ -23,8 +25,10 @@ const CreateUser = async ({ data }: UserData) => {
 };
 
 export const useCreateUser = () => {
+  const router = useRouter();
   return useMutation({
     mutationKey: ["createUser"],
     mutationFn: ({ data }: UserData) => CreateUser({ data }),
+    onSuccess: () => router.push("/login"),
   });
 };

@@ -18,6 +18,7 @@ model User {
   name  String @unique @db.VarChar(50)
   email String 
   age   Int
+  password  String @db.VarChar(50)
   // todos Todo[]
   role  Role   @default(USER)
 

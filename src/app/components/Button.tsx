@@ -1,10 +1,15 @@
-interface ButtonProps {
-  title: string;
+// interface IButtonProps {
+//   title: string;
+//   variant?: "primary" | "danger" | "info" | "ghost";
+//   onClick: () => void;
+// }
+
+type TButtonProps = React.ComponentPropsWithoutRef<"button"> & {
   variant?: "primary" | "danger" | "info" | "ghost";
   onClick: () => void;
-}
+};
 
-const Button: React.FC<ButtonProps> = ({
+const Button: React.FC<TButtonProps> = ({
   title,
   variant = "primary",
   onClick,
@@ -13,17 +18,17 @@ const Button: React.FC<ButtonProps> = ({
     switch (variant) {
       case "primary":
         return (
-          <div
-            className="bg-green-500 p-2 rounded-lg cursor-pointer hover:bg-green-400"
+          <button
+            className="bg-green-500 p-2 rounded-lg cursor-pointer hover:bg-green-400 text-white"
             onClick={onClick}
           >
             {title}
-          </div>
+          </button>
         );
       case "danger":
         return (
           <div
-            className="bg-red-500 p-2 rounded-lg cursor-pointer hover:bg-red-400"
+            className="bg-red-500 p-2 rounded-lg cursor-pointer hover:bg-red-400 text-white"
             onClick={onClick}
           >
             {title}
@@ -32,7 +37,7 @@ const Button: React.FC<ButtonProps> = ({
       case "info":
         return (
           <div
-            className="bg-blue-500 p-2 rounded-lg cursor-pointer hover:bg-blue-400"
+            className="bg-blue-500 p-2 rounded-lg cursor-pointer hover:bg-blue-400 text-white"
             onClick={onClick}
           >
             {title}
@@ -41,7 +46,7 @@ const Button: React.FC<ButtonProps> = ({
       case "ghost":
         return (
           <div
-            className="bg-green-500 p-2 rounded-lg cursor-pointer hover:bg-green-400"
+            className="bg-green-500 p-2 rounded-lg cursor-pointer hover:bg-green-400 text-white"
             onClick={onClick}
           >
             {title}
@@ -50,7 +55,7 @@ const Button: React.FC<ButtonProps> = ({
       default:
         return (
           <div
-            className="bg-white-500 p-2 rounded-lg cursor-pointer hover:bg-white-400"
+            className="bg-white-500 p-2 rounded-lg cursor-pointer hover:bg-white-400 text-white"
             onClick={onClick}
           >
             {title}

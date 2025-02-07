@@ -9,7 +9,7 @@ export async function POST(req: NextRequest) {
         age: body.age,
         name: body.name,
         email: body.email,
-        role: body.role,
+        password: body.password,
       },
       select: {
         id: true,
